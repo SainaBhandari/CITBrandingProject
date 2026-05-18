@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CIT Stylesheet — Component Showcase</title>
+
+<!-- Google Fonts (required by cit-styles.css) -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+<!-- CIT stylesheet -->
+<link rel="stylesheet" href="cit-styles.css"/>
+
+<!-- Showcase-only extras: code block styling, side-by-side layout -->
+<style>
+/* ── Side-by-side demo + code layout ── */
+.sc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 16px 0 36px;
+}
+.sc-demo {
+  background: var(--content-bg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--input-border);
+}
+.sc-code {
+  background: #0d1120;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sc-code-label {
+  background: rgba(46,79,212,.25);
+  color: #7090e0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(46,79,212,.2);
+  flex-shrink: 0;
+}
+.sc-code pre {
+  color: #c8d4ff;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 16px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  white-space: pre;
+  margin: 0;
+  flex: 1;
+}
+/* syntax colours */
+.sc-code .cm { color: #4a6090; }
+.sc-code .kw { color: #79b8ff; }
+.sc-code .at { color: #ffab70; }
+.sc-code .st { color: #9ecbff; }
+.sc-code .fn { color: #b392f0; }
+.sc-code .nu { color: #f8c555; }
+
+@media (max-width: 780px) {
+  .sc-row { grid-template-columns: 1fr; }
+  .sc-demo { border-right: none; border-bottom: 1px solid var(--input-border); }
+}
+
+/* ── Note callout ── */
+.sc-note {
+  background: rgba(46,79,212,.07);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 13px 16px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.sc-note strong { color: var(--body-text); }
+.sc-note code {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 11.5px;
+  color: var(--accent);
+}
+
+/* ── Color swatch grid ── */
+.swatch-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 8px; }
+.swatch { text-align: center; font-size: 10.5px; font-weight: 700; color: var(--text-muted); }
+.swatch-chip {
+  width: 72px; height: 40px;
+  border-radius: 7px;
+  border: 1px solid var(--input-border);
+  margin-bottom: 4px;
+}
+.swatch-hex { font-family: monospace; font-size: 10px; letter-spacing: .02em; }
+
+/* ── Font specimen ── */
+.font-spec { display: flex; flex-direction: column; gap: 12px; margin: 16px 0 8px; }
+.font-spec-row { display: flex; align-items: baseline; gap: 14px; }
+.font-spec-label { font-size: 11px; font-weight: 700; text-transform: uppercase;
+                   letter-spacing: .07em; color: var(--text-muted); min-width: 120px; flex-shrink: 0; }
+
+/* section break between groups */
+.sc-group { margin-top: 48px; }
+.sc-group:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+<div id="site-wrap">
+
+  <!-- NAV -->
+  <nav id="site-nav">
+    <div class="nav-tabs" id="nav-tabs">
+      <span class="nav-tab active" onclick="switchPage(0)">Start Here</span>
+      <span class="nav-tab"        onclick="switchPage(1)">Structure</span>
+      <span class="nav-tab"        onclick="switchPage(2)">Components</span>
+      <span class="nav-tab"        onclick="switchPage(3)">Typography</span>
+      <span class="nav-tab"        onclick="switchPage(4)">Dark Mode</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div id="site-hero">
+    <div style="width:100%;">
+      <div class="hero-title">CIT Stylesheet Showcase</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="site-content">
+
+
+    <!-- ══════════════════════════════════
+         PAGE 0 — START HERE
+    ══════════════════════════════════ -->
+    <section class="page-section active" id="page-0">
+
+      <div class="section-subheading">Quick Start</div>
+      <h2 class="section-heading">How to link the stylesheet</h2>
+
+      <div class="sc-note">
+        <strong>Two files ship together.</strong> Keep <code>cit-styles.css</code> and your HTML in the same folder,
+        then add the three lines below to <code>&lt;head&gt;</code>. That's all that's needed.
+      </div>
+
+      <div class="sc-row">
+        <div class="sc-demo">
+          <div class="section-subheading">What goes in &lt;head&gt;</div>
+          <p class="prose" style="font-size:13px;">1. Google Fonts link — loads Lato, Noto Serif, and Outfit.<br><br>2. The CIT stylesheet itself.<br><br>3. <code>data-theme="light"</code> on the &lt;html&gt; tag activates the light palette. Change to <code>"dark"</code> for dark mode.</p>
+        </div>
+        <div class="sc-code">
+          <div class="sc-code-label">HTML — &lt;head&gt;</div>
+<pre><span class="cm">&lt;!-- ① Google Fonts --&gt;</span>
+<span class="kw">&lt;link</span> <span class="at">href</span>=<span class="st">"https://fonts.googleapis.com/css2?
+  family=Lato:ital,wght@0,400;0,700;1,400;1,700
+  &amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700
+  &amp;family=Outfit:wght@400;600;700
+  &amp;display=swap"</span>
+      <span class="at">rel</span>=<span class="st">"stylesheet"</span><span class="kw">/&gt;</span>
+
+<span class="cm">&lt;!-- ② CIT stylesheet --&gt;</span>
+<span class="kw">&lt;link</span> <span class="at">rel</span>=<span class="st">"stylesheet"</span>
+      <span class="at">href</span>=<span class="st">"cit-styles.css"</span><span class="kw">/&gt;</span></pre>
+        </div>
+      </div>
+
+      <div class="sc-row">
+        <div class="sc-demo">
+          <div class="section-subheading">Page shell</div>
+          <p class="prose" style="font-size:13px;">Wrap everything in <code>#site-wrap</code>. The four children — nav, hero, content, footer — are the standard skeleton every CIT page uses.</p>
+        </div>
+        <div class="sc-code">
+          <div class="sc-code-label">HTML — &lt;body&gt;</div>
+<pre><span class="kw">&lt;html</span> <span class="at">lang</span>=<span class="st">"en"</span> <span class="at">data-theme</span>=<span class="st">"light"</span><span class="kw">&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">id</span>=<span class="st">"site-wrap"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;nav</span>    <span class="at">id</span>=<span class="st">"site-nav"</span><span class="kw">&gt;</span>     … <span class="kw">&lt;/nav&gt;</span>
+    <span class="kw">&lt;div</span>    <span class="at">id</span>=<span class="st">"site-hero"</span><span class="kw">&gt;</span>    … <span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;div</span>    <span class="at">id</span>=<span class="st">"site-content"</span><span class="kw">&gt;</span> … <span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;footer</span> <span class="at">id</span>=<span class="st">"site-footer"</span><span class="kw">&gt;</span> … <span class="kw">&lt;/footer&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/body&gt;</span></pre>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Color Palette -->
+      <div class="section-subheading">Color Palette</div>
+      <h2 class="section-heading">CSS Variables</h2>
+      <p class="prose">All colors are CSS custom properties on <code>:root</code>. Override any token globally or on a scoped selector to theme a section or rebrand the whole site.</p>
+
+      <div class="swatch-grid" style="margin-top:20px;">
+        <div class="swatch"><div class="swatch-chip" style="background:#1a2a8f;"></div><div class="swatch-hex">#1a2a8f</div>Nav Start</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#2e4fd4;"></div><div class="swatch-hex">#2e4fd4</div>Accent</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#4a6fe8;"></div><div class="swatch-hex">#4a6fe8</div>Nav End</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#0d1a6b;"></div><div class="swatch-hex">#0d1a6b</div>Footer</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#c8ccde; border:1px solid #aaa;"></div><div class="swatch-hex">#c8ccde</div>Hero Top</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#e2e5f0; border:1px solid #aaa;"></div><div class="swatch-hex">#e2e5f0</div>Hero Btm</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#f4f5f8; border:1px solid #aaa;"></div><div class="swatch-hex">#f4f5f8</div>Page BG</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1a1a2e;"></div><div class="swatch-hex">#1a1a2e</div>Body Text</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#555577;"></div><div class="swatch-hex">#555577</div>Muted</div>
+        <div class="swatch"><div class="swatch-chip" style="background:#e0e8ff; border:1px solid #aaa;"></div><div class="swatch-hex">#e0e8ff</div>Footer Txt</div>
+      </div>
+
+      <div class="sc-row" style="margin-top:20px;">
+        <div class="sc-demo">
+          <div class="section-subheading">Rebranding example</div>
+          <p class="prose" style="font-size:13px;">Override any single variable — or all of them — to change the whole site's color scheme without touching the HTML.</p>
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-accent">--accent</span>
+            <span class="badge badge-accent">--nav-grad</span>
+            <span class="badge badge-accent">--hero-bg</span>
+            <span class="badge badge-accent">--footer-bg</span>
+          </div>
+        </div>
+        <div class="sc-code">
+          <div class="sc-code-label">CSS — custom rebrand</div>
+<pre><span class="cm">/* swap entire palette to green/teal */</span>
+<span class="kw">:root</span> {
+  <span class="at">--accent</span>:    <span class="st">#0f7a5a</span>;
+  <span class="at">--nav-grad</span>:  <span class="st">linear-gradient(
+    135deg, #063d2c, #0f7a5a
+  )</span>;
+  <span class="at">--hero-bg</span>:   <span class="st">linear-gradient(
+    180deg, #d0e8e0, #edf7f3
+  )</span>;
+}
+
+<span class="cm">/* or theme just one section */</span>
+<span class="kw">#special-section</span> {
+  <span class="at">--section-bg</span>: <span class="st">#fff8e8</span>;
+  <span class="at">--card-border</span>: <span class="st">#c8a830</span>;
+}</pre>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         PAGE 1 — STRUCTURE
+    ══════════════════════════════════ -->
+    <section class="page-section" id="page-1">
+
+      <div class="section-subheading">Site Structure</div>
+      <h2 class="section-heading">Nav, Hero, Pages & Footer</h2>
+
+      <!-- NAV -->
+      <div class="sc-group">
+        <div class="section-subheading">Navigation Bar</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;margin-bottom:14px;">The nav uses the <code>--nav-grad</code> blue gradient. Tabs are evenly spaced and the active one gets a white highlight. Circular logo slots are optional.</p>
+            <div style="border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.12);">
+              <nav id="site-nav" style="position:static;box-shadow:none;border-radius:0;">
+                <div class="nav-logo-wrap" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999;">LOGO</div>
+                <div class="nav-tabs">
+                  <span class="nav-tab active">Home</span>
+                  <span class="nav-tab">About</span>
+                  <span class="nav-tab">Contact</span>
+                </div>
+                <div class="nav-logo-wrap" style="background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999;">LOGO</div>
+              </nav>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;nav</span> <span class="at">id</span>=<span class="st">"site-nav"</span><span class="kw">&gt;</span>
+  <span class="cm">&lt;!-- optional left logo --&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"nav-logo-wrap"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;img</span> <span class="at">src</span>=<span class="st">"logo.png"</span> <span class="at">alt</span>=<span class="st">""</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"nav-tabs"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"nav-tab active"</span>
+          <span class="at">onclick</span>=<span class="st">"switchPage(0)"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"nav-tab"</span>
+          <span class="at">onclick</span>=<span class="st">"switchPage(1)"</span><span class="kw">&gt;</span>About<span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+
+  <span class="cm">&lt;!-- optional right logo --&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"nav-logo-wrap"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;img</span> <span class="at">src</span>=<span class="st">"logo2.png"</span> <span class="at">alt</span>=<span class="st">""</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/nav&gt;</span>
+
+<span class="cm">&lt;!-- JS for tab switching --&gt;</span>
+<span class="kw">&lt;script&gt;</span>
+<span class="fn">function</span> <span class="at">switchPage</span>(i) {
+  document.querySelectorAll(<span class="st">'.nav-tab'</span>)
+    .forEach((t,idx) =&gt;
+      t.classList.toggle(<span class="st">'active'</span>,idx===i));
+  document.querySelectorAll(<span class="st">'.page-section'</span>)
+    .forEach((p,idx) =&gt;
+      p.classList.toggle(<span class="st">'active'</span>,idx===i));
+}
+<span class="kw">&lt;/script&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="sc-group">
+        <div class="section-subheading">Hero / Title Bar</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;margin-bottom:14px;">Full-width banner with Outfit heading. Font scales fluidly 38px → 68px. Subtitle is optional.</p>
+            <div style="border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);">
+              <div id="site-hero" style="min-height:80px;">
+                <div style="width:100%;">
+                  <div class="hero-title" style="font-size:clamp(22px,4vw,40px);">Your Site Name</div>
+                  <div class="hero-subtitle">Your tagline goes here</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">id</span>=<span class="st">"site-hero"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"hero-title"</span><span class="kw">&gt;</span>
+      Your Site Name
+    <span class="kw">&lt;/div&gt;</span>
+    <span class="cm">&lt;!-- subtitle is optional --&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"hero-subtitle"</span><span class="kw">&gt;</span>
+      Your tagline here
+    <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE SECTIONS -->
+      <div class="sc-group">
+        <div class="section-subheading">Tabbed Page Sections</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;margin-bottom:10px;">Each <code>.page-section</code> maps to a nav tab by index. Only the one with <code>.active</code> is shown. <code>switchPage(N)</code> toggles both.</p>
+            <div class="sc-note" style="margin-bottom:0;">
+              Tab <strong>0</strong> → <code>id="page-0"</code><br>
+              Tab <strong>1</strong> → <code>id="page-1"</code><br>
+              Tab <strong>N</strong> → <code>id="page-N"</code>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">id</span>=<span class="st">"site-content"</span><span class="kw">&gt;</span>
+
+  <span class="kw">&lt;section</span> <span class="at">class</span>=<span class="st">"page-section active"</span>
+            <span class="at">id</span>=<span class="st">"page-0"</span><span class="kw">&gt;</span>
+    <span class="cm">&lt;!-- home page content --&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+
+  <span class="kw">&lt;section</span> <span class="at">class</span>=<span class="st">"page-section"</span>
+            <span class="at">id</span>=<span class="st">"page-1"</span><span class="kw">&gt;</span>
+    <span class="cm">&lt;!-- about page content --&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- nav tabs must match --&gt;</span>
+<span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"nav-tab active"</span>
+      <span class="at">onclick</span>=<span class="st">"switchPage(0)"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"nav-tab"</span>
+      <span class="at">onclick</span>=<span class="st">"switchPage(1)"</span><span class="kw">&gt;</span>About<span class="kw">&lt;/span&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="sc-group">
+        <div class="section-subheading">Footer</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;margin-bottom:14px;">Dark navy gradient bar. Text on the left, anything on the right (toggle, links, etc.).</p>
+            <div style="border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.2);">
+              <footer id="site-footer" style="border-radius:0;">
+                <div class="footer-text">CIT affiliated website</div>
+                <div class="dm-toggle" onclick="toggleDark()">
+                  <div class="dm-icon" id="dm-icon-footer-demo">☀️</div>
+                  <div class="dm-switch"></div>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;footer</span> <span class="at">id</span>=<span class="st">"site-footer"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"footer-text"</span><span class="kw">&gt;</span>
+    CIT affiliated website
+  <span class="kw">&lt;/div&gt;</span>
+
+  <span class="cm">&lt;!-- dark mode toggle --&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-toggle"</span>
+       <span class="at">onclick</span>=<span class="st">"toggleDark()"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-icon"</span> <span class="at">id</span>=<span class="st">"dm-icon"</span><span class="kw">&gt;</span>☀️<span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-switch"</span><span class="kw">&gt;&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/footer&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         PAGE 2 — COMPONENTS
+    ══════════════════════════════════ -->
+    <section class="page-section" id="page-2">
+
+      <div class="section-subheading">UI Components</div>
+      <h2 class="section-heading">Cards, Buttons, Tables & More</h2>
+
+      <!-- CARDS -->
+      <div class="sc-group">
+        <div class="section-subheading">Card Grid</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="card-grid" style="grid-template-columns:1fr 1fr;margin-top:0;">
+              <div class="card">
+                <div class="card-title">Card One</div>
+                <p class="card-body">Hover to see the lift effect.</p>
+                <div style="margin-top:10px;"><span class="badge badge-accent">Active</span></div>
+              </div>
+              <div class="card">
+                <div class="card-title">Card Two</div>
+                <p class="card-body">Auto-fill responsive grid.</p>
+                <div style="margin-top:10px;"><span class="badge">Default</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"card-grid"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"card"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"card-title"</span><span class="kw">&gt;</span>Title<span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;p</span>   <span class="at">class</span>=<span class="st">"card-body"</span><span class="kw">&gt;</span>Body text.<span class="kw">&lt;/p&gt;</span>
+    <span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"badge badge-accent"</span><span class="kw">&gt;</span>
+      Tag
+    <span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="cm">/* custom column count */</span>
+<span class="at">style</span>=<span class="st">"grid-template-columns:
+  repeat(2, 1fr)"</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- TWO COL -->
+      <div class="sc-group">
+        <div class="section-subheading">Two-Column Layout</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="two-col">
+              <div style="background:var(--input-bg);border:1px solid var(--input-border);border-radius:8px;padding:16px;font-size:12px;color:var(--text-muted);text-align:center;">Left column</div>
+              <div style="background:var(--input-bg);border:1px solid var(--input-border);border-radius:8px;padding:16px;font-size:12px;color:var(--text-muted);text-align:center;">Right column</div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"two-col"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div&gt;</span> … left … <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div&gt;</span> … right … <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="cm">/* unequal columns */</span>
+<span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"two-col"</span>
+     <span class="at">style</span>=<span class="st">"grid-template-columns:2fr 1fr"</span><span class="kw">&gt;</span>
+
+<span class="cm">/* collapses to 1 col at 680px */</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="sc-group">
+        <div class="section-subheading">Buttons</div>
+        <div class="sc-row">
+          <div class="sc-demo" style="gap:12px;flex-direction:row;flex-wrap:wrap;align-items:center;">
+            <a href="#" class="btn">Primary</a>
+            <a href="#" class="btn-outline">Secondary</a>
+            <button class="btn" style="font-size:12px;padding:7px 16px;">Small</button>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;a</span> <span class="at">href</span>=<span class="st">"#"</span> <span class="at">class</span>=<span class="st">"btn"</span><span class="kw">&gt;</span>Primary<span class="kw">&lt;/a&gt;</span>
+<span class="kw">&lt;a</span> <span class="at">href</span>=<span class="st">"#"</span> <span class="at">class</span>=<span class="st">"btn-outline"</span><span class="kw">&gt;</span>Secondary<span class="kw">&lt;/a&gt;</span>
+<span class="kw">&lt;button</span> <span class="at">class</span>=<span class="st">"btn"</span><span class="kw">&gt;</span>Submit<span class="kw">&lt;/button&gt;</span>
+
+<span class="cm">/* smaller size via inline style */</span>
+<span class="kw">&lt;a</span> <span class="at">class</span>=<span class="st">"btn"</span>
+   <span class="at">style</span>=<span class="st">"font-size:12px;padding:7px 16px"</span><span class="kw">&gt;</span>
+  Small
+<span class="kw">&lt;/a&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="sc-group">
+        <div class="section-subheading">Badges</div>
+        <div class="sc-row">
+          <div class="sc-demo" style="flex-direction:row;flex-wrap:wrap;gap:8px;align-items:center;">
+            <span class="badge">Default</span>
+            <span class="badge badge-accent">Featured</span>
+            <span class="badge">Category</span>
+            <span class="badge badge-accent">New</span>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"badge"</span><span class="kw">&gt;</span>Default<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;span</span> <span class="at">class</span>=<span class="st">"badge badge-accent"</span><span class="kw">&gt;</span>
+  Featured
+<span class="kw">&lt;/span&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMAGE BLOCK -->
+      <div class="sc-group">
+        <div class="section-subheading">Image Block</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="img-block" style="height:130px;">
+              <img src="https://placehold.co/800x300/2e4fd4/ffffff?text=img-block" alt="demo"/>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"img-block"</span>
+     <span class="at">style</span>=<span class="st">"height: 220px;"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;img</span> <span class="at">src</span>=<span class="st">"photo.jpg"</span> <span class="at">alt</span>=<span class="st">"…"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="cm">/* always set a height or the
+   container will collapse to 0 */</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="sc-group">
+        <div class="section-subheading">Divider</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;">Content above</p>
+            <div class="divider" style="margin:16px 0;"></div>
+            <p class="prose" style="font-size:13px;">Content below</p>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"divider"</span><span class="kw">&gt;&lt;/div&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="sc-group">
+        <div class="section-subheading">Data Table</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <table class="data-table" style="margin-top:0;">
+              <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Alice</td><td>Designer</td><td><span class="badge badge-accent">Active</span></td></tr>
+                <tr><td>Bob</td><td>Developer</td><td><span class="badge">Away</span></td></tr>
+                <tr><td>Carol</td><td>Manager</td><td><span class="badge badge-accent">Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;table</span> <span class="at">class</span>=<span class="st">"data-table"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;thead&gt;</span>
+    <span class="kw">&lt;tr&gt;</span>
+      <span class="kw">&lt;th&gt;</span>Name<span class="kw">&lt;/th&gt;</span>
+      <span class="kw">&lt;th&gt;</span>Role<span class="kw">&lt;/th&gt;</span>
+    <span class="kw">&lt;/tr&gt;</span>
+  <span class="kw">&lt;/thead&gt;</span>
+  <span class="kw">&lt;tbody&gt;</span>
+    <span class="kw">&lt;tr&gt;</span>
+      <span class="kw">&lt;td&gt;</span>Alice<span class="kw">&lt;/td&gt;</span>
+      <span class="kw">&lt;td&gt;</span>Designer<span class="kw">&lt;/td&gt;</span>
+    <span class="kw">&lt;/tr&gt;</span>
+  <span class="kw">&lt;/tbody&gt;</span>
+<span class="kw">&lt;/table&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         PAGE 3 — TYPOGRAPHY
+    ══════════════════════════════════ -->
+    <section class="page-section" id="page-3">
+
+      <div class="section-subheading">Fonts & Text</div>
+      <h2 class="section-heading">Typography</h2>
+
+      <div class="sc-note">
+        <strong>Three fonts, one link.</strong> Outfit, Lato, and Noto Serif are all loaded from Google Fonts via the single <code>&lt;link&gt;</code> tag. The CSS references them by name — if the link is missing they fall back to sans-serif or serif.
+      </div>
+
+      <!-- OUTFIT -->
+      <div class="sc-group">
+        <div class="section-subheading">Outfit — Heading Font</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="font-spec">
+              <div class="font-spec-row">
+                <span class="font-spec-label">hero-title (68px)</span>
+                <span style="font-family:'Outfit';font-weight:700;font-size:48px;letter-spacing:.02em;color:var(--body-text);line-height:1;">Heading</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">section-heading (42px)</span>
+                <span style="font-family:'Outfit';font-weight:700;font-size:36px;letter-spacing:.02em;color:var(--accent);line-height:1;">Section Title</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">card-title (22px)</span>
+                <span style="font-family:'Outfit';font-weight:600;font-size:22px;letter-spacing:.02em;color:var(--body-text);line-height:1;">Card Label</span>
+              </div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">CSS</div>
+<pre><span class="cm">/* apply Outfit anywhere */</span>
+<span class="kw">.my-heading</span> {
+  <span class="at">font-family</span>: <span class="st">var(--font-heading)</span>;
+  <span class="at">font-weight</span>: <span class="nu">700</span>;
+  <span class="cm">/* no true italic — omit font-style */</span>
+}
+
+<span class="cm">/* fluid scaling with clamp() */</span>
+<span class="kw">.hero-title</span> {
+  <span class="at">font-size</span>: <span class="fn">clamp</span>(
+    <span class="nu">38px</span>, <span class="nu">5.5vw</span>, <span class="nu">68px</span>
+  );
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- LATO -->
+      <div class="sc-group">
+        <div class="section-subheading">Lato — Body Font</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="font-spec">
+              <div class="font-spec-row">
+                <span class="font-spec-label">Regular 400</span>
+                <span style="font-family:'Lato';font-weight:400;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">Bold 700</span>
+                <span style="font-family:'Lato';font-weight:700;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">Italic 400</span>
+                <span style="font-family:'Lato';font-weight:400;font-style:italic;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">Bold Italic 700</span>
+                <span style="font-family:'Lato';font-weight:700;font-style:italic;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">CSS</div>
+<pre><span class="cm">/* body default — set on html,body */</span>
+<span class="kw">html, body</span> {
+  <span class="at">font-family</span>: <span class="st">var(--font-body)</span>;
+}
+
+<span class="cm">/* weight and style variants */</span>
+<span class="kw">.normal</span>      { <span class="at">font-weight</span>: <span class="nu">400</span>; }
+<span class="kw">.bold</span>        { <span class="at">font-weight</span>: <span class="nu">700</span>; }
+<span class="kw">.italic</span>      { <span class="at">font-style</span>: <span class="st">italic</span>; }
+<span class="kw">.bold-italic</span> {
+  <span class="at">font-weight</span>: <span class="nu">700</span>;
+  <span class="at">font-style</span>: <span class="st">italic</span>;
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTO SERIF -->
+      <div class="sc-group">
+        <div class="section-subheading">Noto Serif — Editorial / Long-Form Font</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="font-spec">
+              <div class="font-spec-row">
+                <span class="font-spec-label">Regular 400</span>
+                <span style="font-family:'Noto Serif';font-weight:400;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">Bold 700</span>
+                <span style="font-family:'Noto Serif';font-weight:700;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">Italic 400</span>
+                <span style="font-family:'Noto Serif';font-weight:400;font-style:italic;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+              <div class="font-spec-row">
+                <span class="font-spec-label">Bold Italic 700</span>
+                <span style="font-family:'Noto Serif';font-weight:700;font-style:italic;font-size:15px;">The quick brown fox jumps over the lazy dog.</span>
+              </div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">CSS</div>
+<pre><span class="cm">/* not applied by default — opt in */</span>
+<span class="kw">.article-body</span> {
+  <span class="at">font-family</span>: <span class="st">var(--font-serif)</span>;
+  <span class="at">font-size</span>: <span class="nu">16px</span>;
+  <span class="at">line-height</span>: <span class="nu">1.8</span>;
+}
+
+<span class="cm">/* inline override works too */</span>
+<span class="cm">/* style="font-family:var(--font-serif)" */</span>
+
+<span class="cm">/* bold + italic — both supported */</span>
+<span class="kw">.pull-quote</span> {
+  <span class="at">font-family</span>: <span class="st">var(--font-serif)</span>;
+  <span class="at">font-weight</span>: <span class="nu">700</span>;
+  <span class="at">font-style</span>: <span class="st">italic</span>;
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEADINGS + PROSE -->
+      <div class="sc-group">
+        <div class="section-subheading">Headings & Prose</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div class="section-subheading" style="margin-bottom:4px;">Section Subheading</div>
+            <h2 class="section-heading" style="margin-bottom:10px;">Section Heading</h2>
+            <p class="prose" style="font-size:13px;">This is <code>.prose</code> body text. It caps the column at 72 characters for comfortable reading and uses 1.8 line-height.</p>
+            <p class="prose" style="font-size:13px;">A second <code>.prose</code> paragraph gets automatic top margin via the CSS <code>+</code> combinator.</p>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML</div>
+<pre><span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"section-subheading"</span><span class="kw">&gt;</span>
+  Category Label
+<span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;h2</span> <span class="at">class</span>=<span class="st">"section-heading"</span><span class="kw">&gt;</span>
+  Main Heading
+<span class="kw">&lt;/h2&gt;</span>
+
+<span class="kw">&lt;p</span> <span class="at">class</span>=<span class="st">"prose"</span><span class="kw">&gt;</span>
+  First paragraph.
+<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;p</span> <span class="at">class</span>=<span class="st">"prose"</span><span class="kw">&gt;</span>
+  Second — auto-spaced above.
+<span class="kw">&lt;/p&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         PAGE 4 — DARK MODE
+    ══════════════════════════════════ -->
+    <section class="page-section" id="page-4">
+
+      <div class="section-subheading">Dark Mode Toggle</div>
+      <h2 class="section-heading">3 Ways to Place It</h2>
+
+      <div class="sc-note">
+        All three options use the <strong>same JS function</strong>. The toggle just sets <code>data-theme="dark"</code> on <code>&lt;html&gt;</code> and the CSS variables automatically update every component on the page.
+      </div>
+
+      <!-- OPTION A: FOOTER -->
+      <div class="sc-group">
+        <div class="section-subheading">Option A — Inline in the Footer</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div style="border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.2);">
+              <footer id="site-footer" style="border-radius:0;">
+                <div class="footer-text">CIT Website</div>
+                <div class="dm-toggle" onclick="toggleDark()">
+                  <div class="dm-icon" id="dm-icon-a">☀️</div>
+                  <div class="dm-switch"></div>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML — inside &lt;footer&gt;</div>
+<pre><span class="kw">&lt;footer</span> <span class="at">id</span>=<span class="st">"site-footer"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"footer-text"</span><span class="kw">&gt;</span>CIT Website<span class="kw">&lt;/div&gt;</span>
+
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-toggle"</span>
+       <span class="at">onclick</span>=<span class="st">"toggleDark()"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-icon"</span> <span class="at">id</span>=<span class="st">"dm-icon"</span><span class="kw">&gt;</span>☀️<span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-switch"</span><span class="kw">&gt;&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/footer&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPTION B: NAV -->
+      <div class="sc-group">
+        <div class="section-subheading">Option B — Inline in the Nav Bar</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <div style="border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+              <nav id="site-nav" style="position:static;box-shadow:none;">
+                <div class="nav-tabs" style="justify-content:flex-start;padding-left:8px;gap:4px;">
+                  <span class="nav-tab active" style="padding:6px 14px;font-size:13px;">Home</span>
+                  <span class="nav-tab" style="padding:6px 14px;font-size:13px;">About</span>
+                </div>
+                <div class="dm-toggle" onclick="toggleDark()" style="margin-left:16px;margin-right:4px;">
+                  <div class="dm-icon" id="dm-icon-b">☀️</div>
+                  <div class="dm-switch"></div>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML — inside &lt;nav&gt;</div>
+<pre><span class="kw">&lt;nav</span> <span class="at">id</span>=<span class="st">"site-nav"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"nav-tabs"</span><span class="kw">&gt;</span> … <span class="kw">&lt;/div&gt;</span>
+
+  <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-toggle"</span>
+       <span class="at">onclick</span>=<span class="st">"toggleDark()"</span>
+       <span class="at">style</span>=<span class="st">"margin-left:16px;"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-icon"</span> <span class="at">id</span>=<span class="st">"dm-icon"</span><span class="kw">&gt;</span>☀️<span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-switch"</span><span class="kw">&gt;&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/nav&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPTION C: FLOATING -->
+      <div class="sc-group">
+        <div class="section-subheading">Option C — Floating Button (stays visible while scrolling)</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;margin-bottom:14px;">Fixed to the corner of the viewport — always visible no matter how far the user scrolls. Default is bottom-right. Swap to bottom-left with one style override.</p>
+            <div style="display:flex;gap:12px;align-items:center;">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--nav-grad);box-shadow:0 4px 16px rgba(20,40,160,.35);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;" onclick="toggleDark()">☀️</div>
+              <div>
+                <span class="badge badge-accent">Bottom-right</span>&nbsp;
+                <span style="font-size:12px;color:var(--text-muted);">default</span>
+              </div>
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">HTML — outside #site-wrap</div>
+<pre><span class="cm">&lt;!-- place anywhere in body,
+     OUTSIDE #site-wrap --&gt;</span>
+<span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-float-btn"</span>
+     <span class="at">id</span>=<span class="st">"dm-float"</span>
+     <span class="at">onclick</span>=<span class="st">"toggleDark()"</span><span class="kw">&gt;</span>☀️<span class="kw">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- bottom-LEFT instead: --&gt;</span>
+<span class="kw">&lt;div</span> <span class="at">class</span>=<span class="st">"dm-float-btn"</span>
+     <span class="at">id</span>=<span class="st">"dm-float"</span>
+     <span class="at">onclick</span>=<span class="st">"toggleDark()"</span>
+     <span class="at">style</span>=<span class="st">"left:24px; right:auto;"</span><span class="kw">&gt;</span>
+  ☀️
+<span class="kw">&lt;/div&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE JS -->
+      <div class="sc-group">
+        <div class="section-subheading">Required JS — works for all three options</div>
+        <div class="sc-row">
+          <div class="sc-demo">
+            <p class="prose" style="font-size:13px;margin-bottom:12px;">One function handles everything. List all the icon element IDs you used so they all update together.</p>
+            <div class="sc-note" style="margin:0;">
+              Using <strong>multiple toggles at once</strong>? Give each a unique <code>id</code> and add all of them to the <code>icons</code> array.
+            </div>
+          </div>
+          <div class="sc-code">
+            <div class="sc-code-label">JS — put in &lt;script&gt; before &lt;/body&gt;</div>
+<pre><span class="kw">let</span> isDark = <span class="st">false</span>;
+
+<span class="fn">function</span> <span class="at">toggleDark</span>() {
+  isDark = !isDark;
+
+  document.documentElement
+    .setAttribute(
+      <span class="st">'data-theme'</span>,
+      isDark ? <span class="st">'dark'</span> : <span class="st">'light'</span>
+    );
+
+  <span class="cm">// update all toggle icons</span>
+  [<span class="st">'dm-icon'</span>, <span class="st">'dm-float'</span>]
+    .forEach(id => {
+      <span class="kw">const</span> el = document.getElementById(id);
+      <span class="kw">if</span> (el) el.textContent =
+        isDark ? <span class="st">'🌙'</span> : <span class="st">'☀️'</span>;
+    });
+}
+
+<span class="cm">// to start in dark mode:</span>
+<span class="cm">// set isDark = true above and</span>
+<span class="cm">// change data-theme="dark" on html</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- #site-content -->
+
+
+  <!-- FOOTER (this showcase's own footer) -->
+  <footer id="site-footer">
+    <div class="footer-text">CIT Stylesheet · cit-styles.css</div>
+    <div class="dm-toggle" onclick="toggleDark()">
+      <div class="dm-icon" id="dm-icon">☀️</div>
+      <div class="dm-switch"></div>
+    </div>
+  </footer>
+
+</div><!-- #site-wrap -->
+
+<!-- Floating dark mode demo button -->
+<div class="dm-float-btn" id="dm-float" onclick="toggleDark()">☀️</div>
+
+<script>
+// ── Page switching ──
+function switchPage(i) {
+  document.querySelectorAll('.nav-tab')
+    .forEach((t, idx) => t.classList.toggle('active', idx === i));
+  document.querySelectorAll('.page-section')
+    .forEach((p, idx) => p.classList.toggle('active', idx === i));
+}
+
+// ── Dark mode (all toggle icons sync) ──
+let isDark = false;
+function toggleDark() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  ['dm-icon','dm-float','dm-icon-a','dm-icon-b','dm-icon-footer-demo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = isDark ? '🌙' : '☀️';
+  });
+}
+</script>
+</body>
+</html>
